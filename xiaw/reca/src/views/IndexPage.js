@@ -38,7 +38,6 @@ class IndexPage extends React.Component{
                 minHeight: 280,
               }}
             >
-              <p className='sider content'>Content</p>
 
               <RouterView routes={this.props.routes}/>
           

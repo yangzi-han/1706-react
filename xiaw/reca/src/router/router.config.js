@@ -1,6 +1,7 @@
 
 import IndexPage from '@/views/IndexPage'
-
+import GovList from '@/views/main/gov/index'
+import addGov from '@/views/main/gov/newList'
 export default {
     routes:[
         {
@@ -8,8 +9,12 @@ export default {
             path:"/main",
             children:[
                 {
+                    path:"/main/govList",
+                    component:GovList
+                },
+                {
                     path:"/main/addGov",
-                    component:()=><p>新机构页面</p>
+                    component:addGov
                 },
                 {
                     path:"/main/editGov/:id?",
@@ -79,14 +84,18 @@ export default {
         },
         {
             path:"/",
-            redirect:'/main/addGov'
+            redirect:'/main/govList'
         }
     ],
       pages:[
           {
             title:"机构管理",
             icon:"",
-            children:[
+            children:[{
+                title: '机构列表',
+                path: '/main/govList',
+                show: true
+              },
                 {
                     title:"新增机构",
                     path:"/main/addGov",
