@@ -20,6 +20,13 @@ import {connect} from 'dva'
           type:'gov/goDetail',
           payload
         })
+      },
+      deteleGov:payload=>{
+        
+        dispatch({
+          type:"gov/deteleGov",
+          payload
+        })
       }
     }
   }
@@ -73,13 +80,15 @@ class GovList extends React.Component{
       key: 'index',
       render: (text, record) => (
         <span>
-          <Link to="/main/addGov" onClick={()=>this.props.goDetail({type:"defail",info:record})}>
+          <Link to="/main/addGov" onClick={()=>this.props.goDetail({type:"detail",info:record})}>
           <span>详情</span>
           </Link>
           <Divider type="vertical" />
           <Link to="/main/addGov" onClick={()=>this.props.goDetail({type:"edit",info:record})}>
           <span>编辑</span>
           </Link>
+          <Divider type="vertical" />
+          <span onClick={()=>this.props.deteleGov({id:record.id})}>删除</span>
         </span>
       ),
     },

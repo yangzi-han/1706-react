@@ -1,4 +1,4 @@
-import {govList} from '@/services'
+import {govList,addGov,deleteGov} from '@/services'
 export default {
 
   namespace: 'gov',
@@ -17,11 +17,24 @@ export default {
         type:"changList",
         payload:res.data.list
       })
+    },
+    *addGov({payload},{call,put,select}){
+        let { type}=yield select(state=>state.gov)
+        if(type==="new"){
+          let res=yield call(addGov,payload);
+          console.log(res)
+        }
+    },
+    *deleteGov({payload},{call,put}){
+      yield call(deleteGov,payload);
+      yield put({
+        type:"getGovList"
+      })
     }
   },
 
   reducers: {
-    changList(state,{payload}){
+    changList(state,{payload}){ 
         return {...state,list:payload}
     },
     goDetail(state,{payload}){

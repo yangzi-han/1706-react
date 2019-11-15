@@ -1,29 +1,28 @@
-
-.normal {
-  font-family: Georgia, sans-serif;
-  margin-top: 3em;
-  text-align: center;
+.wrap {
+  height: 100%;
 }
 
-.title {
-  font-size: 2.5rem;
-  font-weight: normal;
-  letter-spacing: -1px;
+.container {
+  flex: 1;
 }
 
-.welcome {
-  height: 328px;
-  background: url(../assets/yay.jpg) no-repeat center 0;
-  background-size: 388px 328px;
+.sider, .content {
+  height: 100%;
+  overflow-y: scroll;
 }
 
-.list {
-  font-size: 1.2em;
-  margin-top: 1.8em;
-  list-style: none;
-  line-height: 1.5em;
+.content {
+  background: #fff;
+  padding: 24px;
+  margin: 0;
+  min-Height: 280px;
 }
 
-.list code {
-  background: #f7f7f7;
+:global .content {
+  color: hotpink;
+  font-size: 30px;
+}
+
+:global .sider {
+  background: #000;
 }
