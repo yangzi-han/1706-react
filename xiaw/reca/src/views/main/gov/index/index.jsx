@@ -2,6 +2,7 @@ import React from 'react'
 import {Link} from 'dva/router'
 import { Table, Divider, Button} from 'antd'
 import {connect} from 'dva'
+import { putGov } from '../../../../services/gov'
   const mapStateToProps=state=>{
     return {
         list:state.gov.list 
@@ -21,10 +22,17 @@ import {connect} from 'dva'
           payload
         })
       },
+
+      
       deteleGov:payload=>{
-        
         dispatch({
-          type:"gov/deteleGov",
+          type:'gov/deteleGov',
+          payload
+        })
+      },
+      putGov:payload=>{
+        dispatch({
+          type:"gov/putGov",
           payload
         })
       }
@@ -36,6 +44,7 @@ import {connect} from 'dva'
 class GovList extends React.Component{
   componentDidMount(){
     this.props.getGovList()
+    this.props.putGov()
   }
   newGov(){
     this.props.goDetail({

@@ -1,4 +1,4 @@
-import {govList,addGov,deleteGov} from '@/services'
+import {govList,addGov,deleteGov,putGov} from '@/services'
 export default {
 
   namespace: 'gov',
@@ -6,7 +6,8 @@ export default {
   state: {
     list:[],
     type:"",
-    info:{}
+    info:{},
+    newGov:{}
   },
 
   effects: {
@@ -19,13 +20,17 @@ export default {
       })
     },
     *addGov({payload},{call,put,select}){
-        let { type}=yield select(state=>state.gov)
+        let { type,newGov}=yield select(state=>state.gov)
         if(type==="new"){
           let res=yield call(addGov,payload);
           console.log(res)
         }
+       newGov=payload
+       console.log(newGov)
+
+       
     },
-    *deleteGov({payload},{call,put}){
+    *deteleGov({payload},{call,put}){
       yield call(deleteGov,payload);
       yield put({
         type:"getGovList"
@@ -39,6 +44,11 @@ export default {
     },
     goDetail(state,{payload}){
       let {type, info}=payload;
+      console.log("payload...",payload)
+      console.log("newGov",state.newGov)
+      if(type==="edit"){
+         payload=state.newGov
+      }
       return {...state,type,info}
     }
   }

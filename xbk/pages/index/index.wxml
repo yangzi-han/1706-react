@@ -1,0 +1,39 @@
+<!-- index.wxml -->
+<!-- <view class="container">
+  <view class="userinfo">
+    <button wx:if="{{!hasUserInfo && canIUse}}" open-type="getUserInfo" bindgetuserinfo="getUserInfo"> 获取头像昵称 </button>
+    <block wx:else>
+      <image bindtap="bindViewTap" class="userinfo-avatar" src="{{userInfo.avatarUrl}}" mode="cover"></image>
+      <text class="userinfo-nickname">{{userInfo.nickName}}</text>
+    </block>
+  </view>
+  <view class="usermotto">
+    <text class="user-motto">{{motto}}</text>
+  </view>
+</view> -->
+  
+  <swiper indicator-dots="true" autoplay="true" circular="true" interval="3000" duration="1000" easing-function="linear">
+  <block wx:for="{{banners}}" wx:key="*this">
+    <swiper-item>
+      <image src="{{item}}" mode="widthFix" />
+    </swiper-item>
+  </block>
+</swiper>
+<view class="favor" bindtap="goFavor">
+  <text>收藏卡面</text>
+  <image src="/assets/2.jpg" mode="center" />
+</view>
+<view>
+  <text>咖啡+祝福，即可表达心意</text>
+  <view class="list">
+    <block wx:for="{{list}}" wx:key="*this">
+      <view class="item" bindtap="goDetail" data-id="{{item.id}}">
+        <image src="{{item.image}}" mode="widthFix" />
+        <text>{{item.title}}</text>
+      </view>
+    </block>
+  </view>
+</view>
+<view bindtap="goHistory" >
+<text>购买历史</text>
+</view>
